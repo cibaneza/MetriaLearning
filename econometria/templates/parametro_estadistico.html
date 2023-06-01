@@ -1,0 +1,40 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">La importancia de la diferencia entre un parámetro y un estadístico</h1>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Investigando, poco se habla de la diferencia entre el parámetro y un estadístico en los modelos de Machine Learning. Esto, 
+                    porque se asume que ya conoces en qué y cómo se diferencian.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El parámetro, corresponde a la medida poblacional de estudio. Por ejemplo, la media poblacional, varianza y desviación poblacional y 
+                    la proporción poblacional. Estas, no cambian de muestra en muestra, dado que son considerados valores fijos por su naturaleza.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Por otro lado, tenemos a los Estadísticos, estos si cambian de muestra en muestra, y se llaman así porque utilizamos funciones estadísticas 
+                    muestrales para encontrar sus valores. 
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Las fórmulas que utilizamos sobre los Estadísticos fueron y son desarrolladas a partir de varios años de historia y descubrimientos, la mayoría
+                    provenientes de Inglaterra, aquel amigo que nunca falla. Su intención es darnos la más acertada idea sobre el valor real poblacional, o parámetro. 
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    En el sentido de la regresión lineal, identificamos lo siguiente:
+                    $$\begin{array} {|r|r|}\hline Parámetro & Estadístico \\ \hline \beta_0 & \widehat{\beta}_0 \\ \hline \beta_1 & \widehat{\beta}_1 \\ \hline  \end{array}$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    En la sección anterior, obtuvimos los estadísticos, que utilizaremos como aquellos valores que aproximan a los valores verdaderos o parámetros, dado que los obtuvimos
+                    a partir de una muestra.
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

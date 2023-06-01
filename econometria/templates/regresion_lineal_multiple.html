@@ -1,0 +1,129 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">La Regresión Lineal Múltiple</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La regresión lineal múltiple es aquella regresión lineal que involucra más de una variable explicativa para el modelo. 
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La regresión lineal múltiple es un aporte a distintas áreas que involucren la necesidad de predicción o de relación
+                    entre más de una variable explicativa y con una variable dependiente o explicada de característica cuantitativa.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Si antes contabamos con un modelo así
+                    $$\widehat{y}_i = \widehat{\beta}_0+\widehat{\beta}_1x_i$$
+                    En una regresión lineal múltiple nos encontramos con
+                    $$\widehat{y}_i = \widehat{\beta}_0+\widehat{\beta}_1x_i+\widehat{\beta}_2x_{2i}+\widehat{\beta}_jx_{ij} \quad \text{j: {3, 4, 5, ...k}}$$
+                    O, también es posible de encontrar como 
+                    $$\widehat{y}_i = \widehat{\beta}_0+\widehat{\beta}_jx_{ij} \quad \text{j: {1, 2, 3, 999, ...k}}$$
+                    Es decir, tenemos varias o más de una variables explicativas o independientes en el modelo de Regresión lineal.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Como ya te habrás dado cuenta, no podemos tener una fórmula para cada Beta, dado que habrá que hacer distintas para k infinitos variables
+                    independientes. Con este fin, y para hacer el proceso más eficiente, se utilizan las matrices.
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Forma matricial</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El modelo, de forma compacta y, a través del método MCO, se escribe de la siguiente manera (Forma Matricial):
+                    $$y=X\beta+\varepsilon$$
+                    $$\text{En donde }$$
+                    $$
+                    y = 
+                    \begin{bmatrix}
+                    y_1 \\
+                    y_2 \\
+                    \vdots \\
+                    y_n
+                    \end{bmatrix}
+                    $$
+
+                    $$
+                    X = 
+                    \begin{bmatrix}
+                    1 & x_{11} & x_{12} & \cdots & x_{1k} \\
+                    1 & x_{21} & x_{22} & \cdots & x_{2k} \\
+                    \vdots & \vdots & \vdots & \vdots & \vdots \\
+                    1 & x_{n1} & x_{n2} & \cdots & x_{nk}
+                    \end{bmatrix}
+                    $$
+
+                    $$
+                    \beta =
+                    \begin{bmatrix}
+                    \beta_0 \\
+                    \beta_1 \\
+                    \vdots \\
+                    \beta_k
+                    \end{bmatrix}
+                    $$
+
+                    $$
+                    \varepsilon =
+                    \begin{bmatrix}
+                    \varepsilon_1 \\
+                    \varepsilon_2 \\
+                    \vdots \\
+                    \varepsilon_n
+                    \end{bmatrix}
+                    $$
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Estimador de Beta</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Beta ajustado se define como el siguiente: 
+                    $$
+                    \widehat{\beta} = (X^tX)^{-1}X^ty
+                    $$
+                    La ecuación se da siempre y cuando exista la matriz inversa de X transpuesta por X. Y, esta siempre existe
+                    si los regresores son linealmente independientes.
+                </p>
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Estadimador de y</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$
+                    \widehat{y} = X\widehat{\beta}=X(X^tX)^{-1}X^ty=Hy
+                    $$        
+                    $$H = X(X^tX)^{-1}X^t \text{ se le conoce como matriz sombrero}$$
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Residual</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$e = y-\widehat{y}$$
+                    $$e = y-X\widehat{\beta} = y-Hy$$
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Covarianza matriz Beta</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$Cov(\widehat{\beta}) = \sigma^2(X^tX)^{-1}$$
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Estimador de la varianza</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    A partir de la suma de cuadrados de los residuales:
+                    $$SSRes = \sum_{i=1}^n (y_i-\widehat{y}_i^2) = \sum_{i=1}^n e^2_i$$
+                    $$\text{Dado que }e^2 \text{ es equivalente a }e^te$$
+                    $$SSRes  = (y-X\widehat{\beta})^t(y-X\widehat{\beta})$$
+                    $$SSRes = y^ty -\widehat{\beta}^tX^ty$$
+                    $$MSRes = \frac{SSRes}{n-p}$$
+                    $$\widehat{\sigma}^2=MSRes$$
+                    Con n el total de datos y p el total de parámetros en el modelo.
+                    
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

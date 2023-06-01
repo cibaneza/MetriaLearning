@@ -1,0 +1,31 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">R cuadrado ajustado</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Anteriormente, para una MRLS, se utilizó el término de R cuadrado. Sin embargo, para una RLM, se utiliza el término 
+                    "R cuadrado ajustado".
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$R^2=\frac{SSReg}{SSRes}=1-\frac{SSRes}{SSTotal}$$
+                    $$R^2_{adj}=1-(1-R^2)*(\frac{n-1}{n-p})$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La diferencia entre el R cuadrado y el R cuadrado ajustado, es que el R cuadrado ajustado no incrementa
+                    a medida que incrementa el número de variables explicativas en el modelo, sino que intenta corregir esta sobreestimación.
+                </p>          
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El R cuadrado ajustado es siempre menor o igual al R cuadrado. 
+                </p>       
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

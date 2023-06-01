@@ -1,0 +1,292 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Matrices en RLM</h1>
+                <p class="mb-2 text-lg text-gray-500 dark:text-gray-400">
+                Dado el problema en la sección anterior, usted aprenderá a realizar algunas de las operaciones básicas con matrices de 2x2. A medida que aumentan
+                las dimensiones de una matriz, los cálculos se vuelven más complejos. Así mismo, en la sección de libros y recursos, usted podrá encontrar
+                más información acerca de las matrices.
+                </p>
+            </div>
+            <div id="mainContent">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Vectores</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Un vector es un objeto que tiene tanto una magnitud como una dirección. De manera geométrica, podemos dibujar un vector 
+                    como un segmento, cuyo largo es la magnitud del vector y con una flecha indicando la dirección.
+                    <img src="{% static 'images/vector.png' %}" alt="vector" class="mb-4 mt-4">
+                    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">Créditos: <a href="https://mathinsight.org/vector_introduction" target="_blank">https://mathinsight.org/vector_introduction</a></p>
+                </p>
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Matriz</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Una matriz no es más que una generalización de un vector, en la mayoría de casos un conjunto de vectores, en donde se cuenta con filas y columnas.
+                    Normalmente se refiere a una matriz con las dimensiones Filas x Columnas (m x n, con m el número de filas y n, el número de columnas), por ejemplo:
+
+                    <table class="simpletable">
+                        <thead>
+                          <tr>
+                            <th>Index</th>
+                            <th>Años</th>
+                            <th>Edad</th>
+                            <th>Dinero</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-gray-500 dark:text-gray-400">
+                          <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                        </table>
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Ejemplificando con un DataFrame (a modo de introducir los DataFrame tempranamente) hay una dimensión
+                    de m x n, 3 x 4. Es decir, 3 filas y 4 columnas, dado que es un DataFrame y no consideramos los nombres
+                    de las columnas. Tenemos un total de 12 valores.  
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    A continuación se presentan matrices de diferentes dimensiones.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Matriz 2x2
+                    $$
+                    \begin{pmatrix}
+                    5 & 5 \\
+                    11 & 2 \\
+                    \end{pmatrix}
+                    $$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Matriz 3x3
+                    $$
+                    \begin{pmatrix}
+                    2 & 3 & 9 \\
+                    4 & 8 & 1 \\
+                    3 & 7 & 0 \\
+                    \end{pmatrix}
+                    $$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Matriz 3x2
+                    $$
+                    \begin{pmatrix}
+                    2 & 3 \\
+                    4 & 8 \\
+                    3 & 7 \\
+                    \end{pmatrix}
+                    $$
+                </p>
+                
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Propiedades matrices</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Se presenta la siguiente matriz de 2x2
+                    $$
+                    X = 
+                    \begin{pmatrix}
+                    5 & 5 \\
+                    11 & 2 \\
+                    \end{pmatrix}
+                    $$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    X transpuesta 
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$X^t \sim \text{X transpuesta}$$
+                    $$X^t \quad \text{es pasar las filas a columnas}$$
+                    $$
+                    X^t = 
+                    \begin{pmatrix}
+                    5 & 11 \\
+                    5 & 2 \\
+                    \end{pmatrix}
+                    $$
+                </p>
+                
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Multiplicación de matrices
+                    $$
+                    2*
+                    \begin{pmatrix}
+                    4 & 0 \\
+                    1 & 3 \\
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                    8 & 0 \\
+                    2 & 6 \\
+                    \end{pmatrix}
+                    $$
+                    Para la multiplicación de dos matrices, la regla es multiplicar cada fila de la matriz A por cada cada columna de la matriz B, de manera de seguir el siguiente orden:
+                    $$
+                    \text{Si }
+                    A =
+                    \begin{pmatrix}
+                    1 & 0 \\
+                    4 & 6 \\
+                    \end{pmatrix}
+                    \text{ }
+                    \text{y, }
+                    \text{ }
+                    B = 
+                    \begin{pmatrix}
+                    0 & 2 \\
+                    3 & 1 \\
+                    \end{pmatrix}
+                    $$
+
+                    $$
+                    \text{Entonces A*B da como resultado una nueva matriz: }
+                    
+                    \begin{pmatrix}
+                    C_{11} & C_{12} \\
+                    C_{21} & C_{22} \\
+                    \end{pmatrix}
+                    $$
+
+                    $$
+                    \begin{pmatrix}
+                    1 & 0 \\
+                    4 & 6 \\
+                    \end{pmatrix}
+                    *
+                    \begin{pmatrix}
+                    0 & 2 \\
+                    3 & 1 \\
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                    1*0+0*3 & 1*2+0*1 \\
+                    4*0+6*3 & 4*2+6*1 \\
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                    0 & 2 \\
+                    18 & 14 \\
+                    \end{pmatrix}
+                    $$
+                    Requísito Multiplicación de matrices:
+                    $$
+                    \text{Total columnas A = Total filas B}
+                    $$
+
+                    $$\text{Para cualquier multiplicación de matrices, podemos saber cuales serán las columnas y filas}$$
+                    $$\text{fijándonos en el número de filas de la primera matriz y el número de columnas de la segunda matriz.}$$
+                    
+                    Ejemplo
+
+                    $$
+                    A =
+                    \begin{pmatrix}
+                    1 & 5 \\
+                    -3 & 2 \\
+                    0 & 7 \\
+                    \end{pmatrix}
+                    $$
+
+                    $$
+                    B =
+                    \begin{pmatrix}
+                    -5 & 3 & 0 \\
+                    -1 & 2 & 9 \\
+                    \end{pmatrix}
+                    $$
+
+                    $$\text{A es una matriz 3x2 y B una matriz 2x3.}$$
+                    $$\text{Entonces, AxB tendrá 3 filas y 3 columnas}$$
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Matriz inversa
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$
+                    A =
+                    \begin{pmatrix}
+                    1 & 4 \\
+                    6 & 8 \\
+                    \end{pmatrix}
+                    $$
+                    $$\text{Entonces, la matriz inversa de A es } A^{-1}$$
+
+                    $$
+                    A^{-1} = \frac{1}{|A|}*\begin{pmatrix}
+                    8 & -4 \\
+                    -6 & 1 \\
+                    \end{pmatrix}
+                    $$
+
+                    $$
+                    \text{Con } |A| = \text{ El Determinante}
+                    $$
+
+                    $$
+                    |A| = 1*8-6*4=-16
+                    $$
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    X  transpuesta X
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$X^tX \sim \text{X transpuesta por X}$$
+                    $$X^tX \text{ Es equivalente a X^2}$$
+
+                    $$
+                    X = 
+                    \begin{pmatrix}
+                    5 & 5 \\
+                    11 & 2 \\
+                    \end{pmatrix}
+                    $$
+
+                    $$
+                    X^tX =
+                    \begin{pmatrix}
+                    5 & 11 \\
+                    5 & 2 \\
+                    \end{pmatrix}
+                    *
+                    \begin{pmatrix}
+                    5 & 5 \\
+                    11 & 2 \\
+                    \end{pmatrix}
+                    $$
+
+                    En los siguientes enlaces, puedes encontrar más acerca de las operaciones básicas con matrices:
+                    <ul class="mb-4 text-sm text-gray-500 dark:text-gray-400">
+                        <li class="mb-2"><a href="https://www.nagwa.com/en/explainers/432180315293/" target="_blank">https://www.nagwa.com/en/explainers/432180315293/</a></li>
+                        <li class="mb-2"><a href="https://mathinsight.org/search/?q=matrices#search" target="_blank">https://mathinsight.org/search/?q=matrices#search</a></li>
+                    </ul>
+                </p>
+
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

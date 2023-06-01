@@ -1,0 +1,65 @@
+.simpletable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+}
+
+.simpletable th{
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.simpletable th, .simpletable td {
+    padding: 12px 15px;
+}
+
+.simpletable td {
+    border-bottom: 1px solid #dddddd;
+}
+
+
+
+.attributes>p{
+    font-weight: 700;
+}
+.box__attributes{
+    border: solid black;
+    border-radius: 10px;
+    width: 550px;
+    height: 200px;
+    margin-top: -10px;
+}
+.box__attributes p{
+    display: inline-block;
+    padding-right: 65px;
+    margin: 12px;
+}
+.scrollAble{
+    overflow-y: scroll;
+    width: 535px;
+    height: 180px;
+}
+.scrollAble table{
+    padding-top: 10px;
+    margin-top: 20px;
+    margin: 12px;
+    width: 520px;
+    height: 180;
+}
+.table_attr{
+    font-size: 12px;
+    margin-top: 15px !important;
+}
+
+.selectedTable > tbody > tr:hover > td,
+.selectedTable > tbody > tr:hover > th {
+    background-color: rgb(107, 107, 107);
+    color: white;
+}
+
+.filter-white{
+    fill: red;
+}

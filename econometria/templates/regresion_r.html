@@ -1,0 +1,185 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Modelo de Regresión Lineal en R y RStudio </h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Cómo elaborar un análisis de Regresión Lineal. Esta sección plantea servir de inicio de partida
+                    para elaborar un modelo de Regresión Lineal con R y Rstudio.
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Para esta sección, puedes utilizar R y RStudio o RStudio Cloud.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Primero, necesitamos los datos con los cual comenzar a trabajar. Para esto puedes utilizar una base de datos entregado por el Profesor, descargar una tú mismo
+                    o elaborarla. Personalmente me gusta trabajar con las bases de datos disponibles en Kaggle.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                   Utilizaré la siguiente base de datos que puedes descargar para esta sección.
+                   <a href="{% static 'base_datos\Salary_Data.csv' %}" download="Salary_Data.csv" alt="BBDD-Salary-Data" class="py-2 transition-colors duration-200 relative block
+                    hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white "
+                   >Salary_Data.csv</a>
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Una vez descargada la base de datos, que trata sobre los años de experiencia y el salario, podemos proceder a realizar el análisis y construir nuestro modelo.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    <pre>
+                        <code class="language-r">
+                            # Lectura de base de datos BBDD -------------------------------------------
+                            #DADO que nuestro archivo tiene extensión .csv, podemos importarlo como:
+                            read.csv(file = "Salary_Data.csv")
+                            #sin embargo, queremos almacenarlo en una variable.
+                            df <- read.csv(file = "Salary_Data.csv")
+                            
+                            #Siempre debes tener en cuenta el directorio de trabajo en donde estés trabajando. En Rstudio Cloud, por ejemplo, 
+                            #bastaría con subir la base de datos dado que por defecto estás trabajando en la misma ruta donde se encuentra ubicado el r script. Pero, en computador, 
+                            #es distinto. Tienes varias carpetas y rutas distintas, para aquello debes ejecutar:
+
+                            getwd() #para obtener la ruta en donde estás trabajando (por defecto es en Documentos)
+                            setwd() #para seleccionar una ruta en específico
+
+                            #Ejemplo: 
+                            setwd(dir = "c:/Users/my-usuario/desktop/tarea_1")
+                            #A través de código R le estoy diciendo a Rstudio, quiero trabajar en la ruta del disco local c, en Users, luego en my-usuario, escritorio
+                            #y luego en la carpeta recién creada llamada "tarea_1" donde se encuentra mi base de datos "Salary_Data.csv".
+                        </code>
+                    </pre>
+                </p>
+                <pre>
+                    <code class="language-r">
+                        # Puedes echarle un vistazo a la base de datos con la siguiente línea de código
+                        View(df)
+                        # Puedes conocer el tipo de variables (númerica, categórica, etc.) con la siguiente línea de código
+                        str(df)
+
+                        'data.frame':	30 obs. of  2 variables:
+                        $ YearsExperience: num  1.1 1.3 1.5 2 2.2 2.9 3 3.2 3.2 3.7 ...
+                        $ Salary         : num  39343 46205 37731 43525 39891 ...
+
+                        #Tenemos 30 observaciones para este conjunto de datos y dos variables (YearsExperience y Salary)
+                        #Las dos son variables numéricas
+                    </code>
+                </pre>
+
+                <pre>
+                    <code class="language-r">
+                        #Realizamos una matriz de correlaciones
+cor(df)
+                         YearsExperience      Salary
+    YearsExperience          1.0000000     0.9782416
+    Salary                   0.9782416     1.0000000
+                    </code>
+                </pre>
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Las variables YearsExperience y Salary tienen una fuerte correlación. Esto nos indica que existe una fuerte relación lineal
+                    entre ambas variables. También, se aconseja realizar un gráfico de estas correlaciones. Personalmente me gusta utilizar corrplot() de la 
+                    librería corrplot.
+                </p>
+                <pre>
+                    <code class="language-r">
+                        install.packages("corrplot")
+                        library(corrplot)
+                        cor.table = cor(df)
+                        corrplot(cor.table)
+                    </code>
+                </pre>
+                <img src="{% static 'images/rstudio/R_Corrplot.png' %}" alt="Rstudio-Corrplot">
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Antes de continuar, necesitamos conocer qué variable es la que queremos predecir. 
+                    En este caso, queremos predecir el Salario según los años de experiencia, porque, tenemos amplias sospechas
+                    de que a mayor años de experiencia, mejor se les paga a los trabajadores. Ya vimos que estas están fuertemente correlacionadas, pero, 
+                    ¿será así realmente la relación una recta líneal que nos permita utilizar el algoritmo de la Regresión Lineal?
+                </p>
+
+                <pre>
+                    <code class="language-r">
+                        #Para aquello, podemos ejecutar la siguiente línea de código
+                        plot(df$Salary~df$YearsExperience) #El Salario depende de los años de Experiencia
+                    </code>
+                </pre>
+                <img src="{% static 'images/rstudio/scatter_plot.png' %}" alt="Rstudio-ScatterPlot">
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    El Scatter Plot nos permite visualizar que existe cierta relación lineal entre las variables, condicionado a lo que nos entregó la matriz
+                    de correlaciones. 
+                    Procedemos a realizar el Modelo de Regresión Lineal.
+                </p>
+
+                <pre>
+                    <code class="language-r">
+                        modelo = lm(Salary~YearsExperience, data = df)
+                        # Almacemos en una variable, la Regresión Lineal.
+                        # Queremos predecir el Salario a través de los años de Experiencia, utilizando como datos la variable "df"
+                        # lm viene de "Linear Model" o Modelo Lineal.
+
+                        #Para conocer los coeficientes y todo lo que esta simple línea de comando en R nos puede entregar, tenemos varias opciones.
+                        #La más sencilla es con el método de summary()
+                        summary(modelo)
+
+
+                        > summary(modelo)
+
+                        Call:
+                        lm(formula = Salary ~ YearsExperience, data = df)
+
+                        Residuals:
+                            Min      1Q  Median      3Q     Max 
+                        -7958.0 -4088.5  -459.9  3372.6 11448.0 
+
+                        Coefficients:
+                                        Estimate Std. Error t value Pr(>|t|)    
+                        (Intercept)      25792.2     2273.1   11.35 5.51e-12 ***
+                        YearsExperience   9450.0      378.8   24.95  < 2e-16 ***
+                        ---
+                        Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+                        Residual standard error: 5788 on 28 degrees of freedom
+                        Multiple R-squared:  0.957,	Adjusted R-squared:  0.9554 
+                        F-statistic: 622.5 on 1 and 28 DF,  p-value: < 2.2e-16
+                    </code>
+                </pre>
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Tenemos listo nuestro modelo de Regresión Lineal (en este caso Simple). Si quisieramos añadir más variables explicativas al modelo, basta con escribir el 
+                    signo "+"
+                    <pre>
+                        <code class="language-r">
+                            modelo = lm(Salary~YearsExperience+Edad+Sexo+... , data = df)
+                        </code>
+                    </pre>
+                </p>
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Dado aquello, también tenemos acceso al R cuadrado, R cuadrado ajustado, los Test t y el Test f, en términos del p-value.
+                    Pero, surge otra pregunta, ¿Cómo grafico mi modelo de regresión lineal?
+                </p>
+                <pre>
+                    <code class="language-r">
+                        #Basta con ejecutar la siguiente línea de comando
+                        plot(df$Salary~df$YearsExperience)
+                        abline(modelo, col="red")
+                    </code>
+                </pre>
+                <img src="{% static 'images/rstudio/model_plot.png' %}" alt="Rstudio-LinearModelPlot">
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Así de simple podemos ejecutar un algoritmo tan poderoso con el lenguaje de programación R y el IDE RStudio. 
+                    Te invito a seguir investigando, realizando informes útiles para la toma de decisiones, generando un StoryTelling en el proceso. 
+                    El siguiente paso es recrear esto mismo en un informe con RMarkdown, o con RShiny para los más avanzados y poder validar en orden 
+                    los supuestos y la calidad del modelo.
+                </p>
+
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'econometria_home.html' %} {% load static %} {% block scripts %}
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- htmx -->
+<script src="{% static 'js/htmx.min.js' %}"></script>
+<!-- select2 -->
+<link
+  href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %} {% block topic %}
+<main
+  id="content-wrapper"
+  class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible"
+>
+  <div class="flex w-full">
+    <div
+      class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16"
+    >
+      <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+        <h1
+          class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+          id="content"
+        >
+          Aplicación para regresiones lineales, un modelo simple y múltiple
+        </h1>
+        <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+          Crea tus propios modelos a través de bases de datos ya preparados.
+        </p>
+      </div>
+      <div id="mainContent">
+        <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+          Antes de iniciar, te invito a leer el
+          <a href="{% url 'instrucciones' %}" style="color: red">Instructivo</a>
+          para subir apropiadamente tus bases de datos.
+        </p>
+
+        <div class="flex justify-center">
+          <div class="mb-3 w-96">
+            <img
+              src="https://cdn.icon-icons.com/icons2/2070/PNG/512/dog_icon_125586.png"
+              alt="dogo"
+            />
+            <form
+              hx-post="{% url 'search_col' %}"
+              hx-target="#col-results"
+              hx-swap="outerHTML"
+              hx-trigger="submit, input delay:0.3s"
+              enctype="multipart/form-data"
+              id="new_file_form"
+            >
+              {% csrf_token %}
+              <input
+                type="file"
+                <input
+                class="form-control block w-full px-2 py-1.5 text-xl font-normal bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-gray-500 dark:text-gray-400"
+                name="document"
+                id="filename"
+              />
+              <button
+                type="submit"
+                id="file"
+                class="btn btn-primary cursor-pointer text-gray-500 dark:text-gray-400"
+              >
+                Upload
+              </button>
+            </form>
+          </div>
+        </div>
+        {% include 'search_columns.html' %}
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.body.addEventListener("htmx:configRequest", (e) => {
+    e.detail.headers["X-CSRFToken"] = "{{ csrf_token }}";
+  });
+
+  const themeMap = {
+    dark: "light",
+    light: "solar",
+    solar: "dark",
+  };
+
+  const theme =
+    localStorage.getItem("theme") ||
+    ((tmp = Object.keys(themeMap)[0]), localStorage.setItem("theme", tmp), tmp);
+  const bodyClass = document.body.classList;
+  bodyClass.add(theme);
+
+  function toggleTheme() {
+    const current = localStorage.getItem("theme");
+    const next = themeMap[current];
+
+    bodyClass.replace(current, next);
+    localStorage.setItem("theme", next);
+  }
+
+  document.getElementById("themeButton").onclick = toggleTheme;
+</script>
+{% endblock %}

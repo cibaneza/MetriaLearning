@@ -1,0 +1,191 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Modelo de Regresión Lineal en Python </h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Cómo elaborar un análisis de Regresión Lineal. Esta sección plantea servir de inicio de partida
+                    para elaborar un modelo de Regresión Lineal con Python.
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Puedes utilizar Python con JupyterLab, Spyder, VisualStudio o algún otro IDE. Yo te recomiendo utilizar JupyterLab,
+                    que es un poco más intituivo al inicio. Aunque, sin importar el IDE, los resultados son el mismo.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Primero, necesitamos los datos con los cual comenzar a trabajar. Para esto puedes utilizar una base de datos entregado por el Profesor, descargar una tú mismo
+                    o elaborarla. Personalmente me gusta trabajar con las bases de datos disponibles en Kaggle.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                   Utilizaré la siguiente base de datos que puedes descargar para esta sección.
+                   <a href="{% static 'base_datos\Salary_Data.csv' %}" download="Salary_Data.csv" alt="BBDD-Salary-Data" class="py-2 transition-colors duration-200 relative block
+                    hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white "
+                   >Salary_Data.csv</a>
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Una vez descargada la base de datos, que trata sobre los años de experiencia y el salario, podemos proceder a realizar el análisis y construir nuestro modelo.
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    <pre>
+                        <code class="language-python">
+                            # Librerías
+                            # pip install pandas, numpy, matplotlib
+                            import numpy as np 
+                            import pandas as pd
+                            import matplotlib.pyplot as plt
+                        </code>
+                    </pre>
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    <pre>
+                        <code class="language-python">
+                            # Lectura de base de datos BBDD
+                            #DADO que nuestro archivo tiene extensión .csv, podemos importarlo como:
+                            pd.read_csv("Salary_Data.csv")
+                            #sin embargo, queremos almacenarlo en una variable.
+                            df = pd.read_csv("Salary_Data.csv")
+                        </code>
+                    </pre>
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    <pre>
+                        <code class="language-python">
+                            # Matriz de correlaciones
+                            df.corr()
+                                                YearsExperience	  Salary
+                            YearsExperience	    1.000000	    0.978242
+                            Salary	            0.978242	    1.000000
+                        </code>
+                    </pre>
+                </p>
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Las variables YearsExperience y Salary tienen una fuerte correlación. Esto nos indica que existe una fuerte relación lineal
+                    entre ambas variables. También, se aconseja realizar un gráfico de estas correlaciones. 
+                </p>
+                <pre>
+                    <code class="language-python">
+                        # Gráfico de correlaciones
+                        # pip install seaborn
+                        import seaborn as sns
+
+                        f, ax = plt.subplots(figsize=(10, 8))
+                        sns.heatmap(corr, mask=np.zeros_like(corr, dtype=bool), cmap=sns.diverging_palette(220, 10, as_cmap=True),
+                                    square=True, ax=ax)
+                    </code>
+                </pre>
+                <img src="{% static 'images/py/corr-plot.png' %}" alt="Python-Corrplot">
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Antes de continuar, necesitamos conocer qué variable es la que queremos predecir. 
+                    En este caso, queremos predecir el Salario según los años de experiencia, porque, tenemos amplias sospechas
+                    de que a mayor años de experiencia, mejor se les paga a los trabajadores. Ya vimos que estas están fuertemente correlacionadas, pero, 
+                    ¿será así realmente la relación una recta líneal que nos permita utilizar el algoritmo de la Regresión Lineal?
+                </p>
+
+                <pre>
+                    <code class="language-python">
+                        #Para aquello, podemos hacerlo de la siguiente forma:
+                        sns.pairplot(df)
+                    </code>
+                </pre>
+                <img src="{% static 'images/py/python-plot.png' %}" alt="Python-plot">
+
+                <pre>
+                    <code class="language-python">
+                        #Por otro lado, es igual de válido:
+
+                        #Se definen las variables independientes y dependiente
+                        x = df.loc[:, "YearsExperience"]
+                        y = df.loc[:, "Salary"]
+
+                        #plot
+                        df.plot(kind='scatter', x='YearsExperience', y='Salary')
+                        plt.show()
+                    </code>
+                </pre>
+                <img src="{% static 'images/py/python-plot-1dim.png' %}" alt="Python-plot">
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    El Scatter Plot nos permite visualizar que existe cierta relación lineal entre las variables, condicionado a lo que nos entregó la matriz
+                    de correlaciones. 
+                    Procedemos a realizar el Modelo de Regresión Lineal.
+                </p>
+
+                <pre>
+                    <code class="language-python">
+                        # pip install statsmodels
+                        import statsmodels.formula.api as smf
+
+                        model = smf.ols('Salary ~ YearsExperience', df).fit()
+                        model.summary()
+
+                        OLS Regression Results
+                        Dep. Variable:	Salary	R-squared:	0.957
+                        Model:	OLS	Adj. R-squared:	0.955
+                        Method:	Least Squares	F-statistic:	622.5
+                        Date:	Sat, 08 Oct 2022	Prob (F-statistic):	1.14e-20
+                        Time:	15:04:55	Log-Likelihood:	-301.44
+                        No. Observations:	30	AIC:	606.9
+                        Df Residuals:	28	BIC:	609.7
+                        Df Model:	1		
+                        Covariance Type:	nonrobust		
+                        
+                                         coef	     std err	     t	 P>|t|	  [0.025	  0.975]
+                              Intercept	2.579e+04	2273.053	11.347	0.000	2.11e+04	3.04e+04
+                        YearsExperience	9449.9623	378.755	    24.950	0.000	8674.119	1.02e+04
+                        Omnibus:	2.140	Durbin-Watson:	1.648
+                        Prob(Omnibus):	0.343	Jarque-Bera (JB):	1.569
+                        Skew:	0.363	Prob(JB):	0.456
+                        Kurtosis:	2.147	Cond. No.	13.2
+
+                    </code>
+                </pre>
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Tenemos listo nuestro modelo de Regresión Lineal (en este caso Simple). Si quisieramos añadir más variables explicativas al modelo, basta con escribir el 
+                    signo "+"
+                    <pre>
+                        <code class="language-python">
+                            model = smf.ols(Salary ~ YearsExperience + Edad + Sexo+... ,df).fit()
+                        </code>
+                    </pre>
+                </p>
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Dado aquello, también tenemos acceso al R cuadrado, R cuadrado ajustado, los Test t y el Test f, en términos del p-value.
+                    Pero, surge otra pregunta, ¿Cómo grafico mi modelo de regresión lineal?
+                </p>
+                <pre>
+                    <code class="language-python">
+                        #plot
+                        plt.plot(x, prediction, label="Linear Regression", color='b')
+                        plt.scatter(x, y, label='Data', color='g', alpha=.7)
+                        plt.legend()
+                        plt.xlabel('YearsExperience')
+                        plt.ylabel('Salary')
+                        plt.show()
+                    </code>
+                </pre>
+                <img src="{% static 'images/py/python-linear-regression-plot.png' %}" alt="Python-LinearModelPlot">
+
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Así de simple podemos ejecutar un algoritmo tan poderoso con el lenguaje de programación Python. 
+                    Te invito a seguir investigando, realizando informes útiles para la toma de decisiones, generando un StoryTelling en el proceso. 
+                    El siguiente paso es recrear esto mismo en un informe con JupyerLab y Markdown +\o latex y poder validar en orden 
+                    los supuestos y la calidad del modelo.
+                </p>
+
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

@@ -1,0 +1,13 @@
+<select id="select-col-dep" name="output_y">
+    <option selected disabled="true">--Variable dependiente --</option>
+    {% for datos in cols %}
+    <option>{{ datos }}</option>
+    {% endfor %}
+</select>
+
+<select id="select-col-ind" multiple name="output_x">
+    {% for datos in cols %}
+    <option value="{{ datos }}">{{ datos }}</option>
+    {% endfor %}
+
+<input type="submit" value="Aceptar" class="btn btn-primary cursor-pointer text-gray-500 dark:text-gray-400 font-semibold py-2 px-4 shadow-md">

@@ -1,0 +1,206 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Formación de modelos</h1>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El análisis de regresión es una técnica estadística que nos es útil para modelar la supuesta relación entre variables. En esta sección, 
+                    veremos la utilidad de un diagrama de dispersión y su aporte a la credibilidad del modelo para el investigador.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    En realidad, una regresión se puede utilizar literalmente para cualquier fenómeno que quisieramos tratar de explicar y predecir. El problema, ante eso,
+                    es que existe un requisito fundamental. 
+                </p>
+                <!-- Correlación -->
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">¿Causalidad o Correlación?</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                        Antes de siquiera intentar predecir cualquier fenómeno de la vida real en que el lector esté interesado, existe una receta que nos ayudará a 
+                        establecer un buen modelo inicial. El hecho de la Causalidad y la Correlación.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    <img src="{% static 'images/cat_correlation_causation.jfif' %}" alt="">
+                    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">Créditos: <a href="https://www.reddit.com/r/pics/comments/qebbal/correlation_is_not_causation/" target="_blank">user-screenshotofdispair</a></p>
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Te invito una vez más a echarle un vistazo a la imagen. ¿Es el gato el responsable de la caída de la estructura, o simplemente
+                    es coincidencia que estuviera allí al momento de tomar la foto? Quizás al gato le gusta posar y usualmente un humano
+                    paseaba por allí con una cámara.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Todo en el mundo está correlacionado. Que el gato esté encima de la estructura no significa que él fuese el responsable de 
+                    la caída de la misma, ¿es el gato lo suficientemente pesado para hacerlo?. El gato no fue el responsable de aquello, sin embargo está allí, 
+                    posando y tomando sol como si nada. Esta es la diferencia entre causalidad y correlación.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Nosotros, en la elaboración de un modelo de Regresión Lineal, lo que buscamos es precisamente la Causalidad. Que unas variables expliquen a otra
+                    y que no simplemente estén correlacionadas. Es, por aquello, que a las variables predictoras se les llama variables explicativas y no variables 
+                    correlacionadas.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Lo primero, entonces, es realizar un análisis de correlación según nos pidan o quisieramos para comenzar a realizar nuestro modelo.
+                    Para esto, es útil tanto una correlación numérica como un gráfico de correlaciones. Ojo, recordar que la correlación solo nos indica 
+                    si las variables están correlacionadas linealmente. Si no están correlacionadas linealmente, existe otro tipo de relación no lineal. 
+                    Te invito a darle una vuelta a la <a href="{% url 'regresion-r' %}" style="color: red;"> Regresión con R</a> y <a href="{% url 'regresion-python' %}" style="color: red;"> Regresión con Python</a>. 
+                </p>
+                <!-- Diagrama de dispersión -->
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Diagrama de dispersión</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El digrama de dispersión es el siguiente paso luego de un análisis de correlación al establecer un buen modelo inicial. Para esto, 
+                    se incluye un ejemplo.
+                </p>
+                <p class="mb-4 dark:text-gray-400 text-gray-500">
+                    Tenemos un problema, y queremos comenzar a analizarlo. Creemos que si las personas en cierto barrio no se conocen del todo, 
+                    podría generar más delincuencia en el sector. Para esto, contamos con un tamaño de muestra 6 escogidas de manera aleatoria
+                    en el cual x representa la tasa de cambio de población en el barrio e y la tasa de crímen por cada mil personas. 
+                </p>
+                <!-- Plot -->
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
+                <script type="application/javascript">
+                    Highcharts.chart('container', {
+                       chart: {
+                        type: 'scatter',
+                        zoomType: 'xy'
+                       },
+                       title: {
+                        text: 'Tasa de cambio de la población de un barrio a otro versus la tasa de crímen por cada mil personas'
+                       },
+                       subtitle: {
+                        text: 'Fuente: Neighborhood Facts, The Piton Foundation. Extraído de Basic Statistics Brase octava edición'
+                       },
+                       xAxis: {
+                        title: {
+                            enabled: true,
+                            text: '% cambio en la población por cada mil personas'
+                        },
+                        startOnTick: true,
+                        endOnTick: true,
+                        showLastLabel: true
+                       },
+                       yAxis: {
+                        title: {
+                            text: '% de delincuencia por cada mil personas'
+                        }
+                       },
+                       legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            verticalAlign: 'top',
+                            x: 100,
+                            y: 70,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+                            borderWidth: 1
+                        },
+                        series: [{
+                            name: 'Observación',
+                            color: 'rgba(223, 83, 83, .5',
+                            data: [[29, 173], [2, 35], [11, 132], [17, 127], [7, 69], [6, 53]]
+                        }]
+                    });
+                </script>    
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    El análisis comienza desde los valores más pequeños a los valores más hacia arriba.
+                    Puedes interactuar con el gráfico para chequear los valores de cada coordenada (x, y).
+                </p>
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Si y representa la tasa de delincuencia y x la tasa de cambio en la población por cada mil personas, la ecuación
+                    de una recta que relaciona esas dos variables es
+                    $$y = \beta_0+\beta_1x$$
+                </p>
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    Donde Beta cero es la ordenada al origen (coeficiente) y Beta uno es la pendiente.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Como puedes observar, los valores más pequeños de x se relacionan con los valores más pequeños de y. De manera viceversa, 
+                    los valores más altos de x se relacionan con los valores más altos de y. 
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Entonces, podríamos asumir de manera casi inmediata que esta relación entre el cambio en la población 
+                    y la delincuencia, presentan una relación lineal.
+                </p>
+                <!-- plot2 -->
+                <figure class="highcharts-figure">
+                    <div id="container2"></div>
+                </figure>
+                <script type="application/javascript">
+                   Highcharts.chart('container2', {
+                        title: {
+                            text: 'Tasa de cambio de la población de un barrio a otro versus la tasa de crímen por cada mil personas'
+                        },
+                        subtitle: {
+                        text: 'Fuente: Neighborhood Facts, The Piton Foundation. Extraído de Basic Statistics Brase octava edición'
+                       },
+                        xAxis: {
+                            title: {
+                                enabled: true,
+                                text: '% cambio en la población por cada mil personas'
+                            },
+                            showLastLabel: true
+                        },
+                        yAxis: {
+                            title: {
+                            text: '% de delincuencia por cada mil personas'
+                        }
+                        },
+                        series: [{
+                            type: 'line',
+                            name: 'Linea',
+                            data: [[0, 1], [20, 173]],
+                            marker: {
+                                enabled: false
+                            },
+                            states: {
+                                hover: {
+                                    lineWidth: 0
+                                }
+                            },
+                            enableMouseTracking: false
+                        }, {
+                            type: 'scatter',
+                            color: 'rgba(223, 83, 83, .5',
+                            name: 'Observaciones',
+                            data: [[29, 173], [2, 35], [11, 132], [17, 127], [7, 69], [6, 53]],
+                            marker: {
+                                radius: 4
+                            }
+                        }]
+                    });
+                </script>
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    La línea en el gráfico es aleatoria. La idea detrás de esta línea, es que sea la mejor. La mejor es la que 
+                    pasa por todos los "puntos" en el gráfico, o al menos lo intenta. Como vemos, solo pasa por algunos puntos. 
+                    Esta recta se puede mejorar.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Si bien los datos no caen exactamente sobre la recta dibujada de manera aleatoria, se puede modificar la ecuación anteriormente vista para 
+                    lograr este cometido. Aquí entramos en sector de los valores observados y valores estimados.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Sea la diferencia entre el valor observado de y y el de la línea recta (Beta cero + Beta 1 por x) un error epsilon o mu.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Esta diferencia llamada error, es convenientemente una variable aleatoria que explica por qué el modelo no
+                    se ajusta exactamente a los datos. Este error puede estar dado por errores de medición, efectos de otras variables, entre otros.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Entonces, un modelo que más se ajusta a nuestro cometido, es incorporando esta variable de error.
+                    $$y = \beta_0+\beta_1x+\varepsilon$$
+                </p>
+                <p class="mb-4 mt-4 text-lg text-gray-500 dark:text-gray-400">
+                    La siguiente sección nos explica cómo podemos encontrar la mejor recta que pasa por todos los puntos posibles. Pista: debes utilizar la ecuación anterior.
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

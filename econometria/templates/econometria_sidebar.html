@@ -1,0 +1,231 @@
+<aside id="sidebar"
+class="fixed inset-0 z-20 flex-none hidden h-full w-72 lg:static lg:h-auto lg:overflow-y-visible lg:pt-0 lg:w-48 lg:block"
+aria-labelledby="sidebar-label">
+<h4 id="sidebar-label" class="sr-only">Browse docs</h4>
+
+<div id="navWrapper"
+    class="overflow-y-auto z-20 h-full bg-slate-100 scrolling-touch max-w-2xs lg:h-[calc(100vh-3rem)] lg:block lg:sticky top:24 lg:top-28 dark:bg-slate-900 lg:mr-0">
+    <nav id="nav"
+        class="pt-16 px-1 pl-3 lg:pl-0 lg:pt-2 font-normal text-base lg:text-sm pb-10 lg:pb-20 sticky?lg:h-(screen-18)"
+        aria-label="Docs navigation">
+        <ul class="mb-0 list-unstyled">
+            <li class="mt-8">
+                <h5
+                    class="mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase lg:text-xs dark:text-white">
+                    Comenzando</h5>
+                <ul class="py-1 list-unstyled fw-normal small">
+                    <li>
+                        <a href="{% url 'econometria-home' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="problemas-aplicacion" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Problemas de aplicación
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'regresion-lineal' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión Lineal Simple
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'aclaracion-regresion-lineal' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Aclaración Regresión Lineal
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'parametro-estadistico' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Parámetro y Estadístico</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'anova' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">ANOVA MRLS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'varianza' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Varianza
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'intervalos-confianza' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Test de Hipótesis e Intervalos de confianza
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'calidad' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Calidad de un modelo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'regresion-supuestos' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Supuestos</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'regresion-multiple' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white "> Regresión Lineal Multiple
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'matrices' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Matrices
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'supuesto-adicional' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Supuesto adicional
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'anova-mrlm' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">ANOVA MRLM
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'r-cuadrado-ajustado' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">R cuadrado ajustado
+                        </a>
+                    </li>
+                    <!-- 
+                    <li>
+                        <a href="#" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Análisis de los Supuestos
+                        </a>
+                    </li>
+                    -->
+                    <li>
+                        <a href="#" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Modelo Logit
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-8">
+                <h5
+                    class="mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase lg:text-xs dark:text-white">
+                    SOFTWARE</h5>
+                <ul class="py-1 list-unstyled fw-normal small">
+                    <li>
+                        <a href="{% url 'regresion-r' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión en R
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'regresion-python' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión en Python
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 
+            <li class="mt-8">
+                <h5
+                    class="mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase lg:text-xs dark:text-white">
+                    Ejercicios</h5>
+                <ul class="py-1 list-unstyled fw-normal small">
+                    <li>
+                        <a href="/docs/components/alerts/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión lineal simple uno
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/accordion/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión lineal simple dos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/avatar/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión lineal simple tres
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/badge/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión lineal múltiple uno
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/breadcrumb/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión lineal múltiple dos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/buttons/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión lineal múltiple tres
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/button-group/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión Logit uno  
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/card/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión Logit dos 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/components/carousel/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión Logit tres 
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            -->
+            <li class="mt-8">
+                <h5
+                    class="mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase lg:text-xs dark:text-white">
+                    APP</h5>
+                <ul class="py-1 list-unstyled fw-normal small">
+                    <li>
+                        <a href="{% url 'instrucciones' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Instrucciones
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'app' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión
+                        Lineal Simple & Múltiple 
+                        <span
+                        class="bg-blue-100 text-blue-800 text-2xs font-semibold ml-2 px-1.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">NEW</span></a>
+                    </li>
+                    <li>
+                        <a href="/docs/forms/file-input/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Regresión
+                            Logit
+                            <span
+                            class="bg-blue-100 text-blue-800 text-2xs font-semibold ml-2 px-1.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">NEW</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-8">
+                <h5
+                    class="mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase lg:text-xs dark:text-white">
+                    Extra</h5>
+                <ul class="py-1 list-unstyled fw-normal small">
+                    <li>
+                        <a href="{% url 'libros' %}" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Libros y Recursos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/typography/paragraphs/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Cursos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/typography/blockquote/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Cómo seguir
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/docs/typography/images/" data-sidebar-item
+                            class="py-2 transition-colors duration-200 relative block hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white ">Mensaje
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+</aside>

@@ -1,0 +1,54 @@
+{% load static %}
+<div id="col-results">
+    {% if cols.any %}
+    <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Información sobre la base de datos</h1>
+    <p class="mb-4 text-lg text-gray-900 dark:text-gray-400">
+    <!-- 
+        {% for columnas in cols %}
+        {{ columnas }}
+        {% endfor %} -->
+    </p>
+    {% include 'data_info.html' %}
+
+    <br>
+    <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">SELECT BOX</h1>
+    
+    <br>
+    
+
+    <form hx-post="{% url 'search_col' %}" hx-target="#col-results"  hx-swap="outerHTML">
+        {% csrf_token %}
+        {% include 'search_values.html' %}
+    </form>    
+
+
+    <br>
+
+            <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                {{ tables|safe }}            
+            </p>
+
+    <br>
+    </select>
+    {% else %}
+    <br>
+    <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+        Inicia subiendo un archivo en formato csv, xlsx, xls o txt.    
+        ¿No cuentas con una base de datos? 
+        <a href="{% static 'base_datos\Salary_Data.csv' %}" download="Salary_Data.csv" alt="BBDD-Salary-Data" class="py-2 transition-colors duration-200 relative block
+                    hover:text-gray-900 text-gray-500 dark:text-gray-400 dark:hover:text-white"
+                   >Salary_Data.csv</a>        
+    </p>
+    
+    {% endif %}
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+        $('#select-col-dep').select2();
+        $('#select-col-ind').select2({
+            placeholder: 'Variables independientes',
+            closeOnSelect: false
+        });
+       })
+    </script>

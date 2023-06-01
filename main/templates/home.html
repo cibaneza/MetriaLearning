@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero -->
+<section class="relative">
+    <div class="container flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-28">
+        <!-- Content -->
+        <div class="flex flex-1 flex-col items-center lg:items-start ">
+            <h2 class="text-bookmark-blue text-3xl md:text-4 lg:text-5xl text-center lg:text-left mb-6 dark:text-white">
+                Una ayudantía simple
+            </h2>
+            <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6 dark:text-white">
+                Prepara y estudia las clases con una interfaz simple y amigable. De un estudiante, para estudiantes
+                y profesores. Crea, Modifica y Compara Regresiones Lineales Simples y Múltiples, comprueba los supuestos. Pruébalo gratis.
+            </p>
+            <div class="flex justify-center flex-wrap gap-6">
+                <a href="{% url 'app' %}"><button type="button" class="btn btn-purple hover:bg-bookmark-white hover:text-black">LLévame a la Aplicación</button></a>
+                <a href="#redes"><button type="button" class="btn btn-white hover:bg-bookmark-purple hover:text-white">Llévame a la Comunidad</button></a>
+            </div>
+        </div>
+        <!-- Image -->
+        <div class="flex justify-center flex-1 mb-10 md:mb-16 lg:mb-0 z-10">
+            <img class="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-full md:h-full border-double border-4 border-l-sky-500 rounded-tl-lg" 
+            src="{% static 'images/vaporwave_crow_deviantart.png' %}" 
+            alt="first_landing_image">
+        </div>
+    </div>
+    <!-- Rounded Rectangle -->
+    <div class="hidden md:block overflow-hidden bg-bookmark-purple rounded-l-full absolute h-80 w-2/4 top-32 right-0 lg: -bottom-28 lg:-right-36"></div>
+</section>
+
+<!-- Features -->
+<section class="bg-bookmark-white py-20 mt-20 lg:mt-60 dark:bg-slate-900">
+    <!-- Heading -->
+    <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
+        <h1 class="text-3xl text-center text-bookmark-blue dark:text-white">Ágil</h1>
+        <p class="text-center text-bookmark-grey mt-4 dark:text-white">
+            Una metodología ágil, que permite que practiques e interactúes con distintas bases de datos a medida que aprendes
+            con los recursos de la aplicación.
+        </p>
+    </div>
+    <!-- Feature #1 -->
+    <div class="relative mt-20 lg:mt-24">
+        <div class="container flex flex-col lg:flex-row items-center justify-center gap-x-24">
+            <!-- Image -->
+            <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+                <img 
+                class="w-3/4 h-3/4 sm:w-3/4 sm:h-3/4 md:w-full md:h-full border-double border-4 border-l-sky-500 rounded-tl-lg"
+                src="{% static 'images/econo.png' %}" 
+                alt="second_landing_image">
+            </div>
+            <!-- Content -->
+            <div class="flex flex-1 flex-col items-center lg:items-start">
+                <h1 class="text-3xl text-bookmark-blue dark:text-white">Econometría a la mano</h1>
+                <p class="text-bookmark-grey my-4 text-center lg:text-left sm:w-3/4 lg:w-full dark:text-white">
+                    Economía y el enfoque estadístico, conocerás conceptos clave y el algoritmo principal 
+                    supervisado para iniciantes en el tema sobre fenómenos económicos. No olvides los supuestos!.
+                </p>
+                <a href="{% url 'econometria-home' %}"><button type="button" class="btn btn-purple hover:bg-bookmark-white hover:text-black">
+                    Iniciar aventura
+                </button></a>
+            </div>
+        </div>
+    <!-- Rounded Rectangle -->
+        <div class="hidden lg:block overflow-hidden
+        bg-bookmark-purple 
+        rounded-r-full
+        absolute
+        h-80 w-2/4 lg: -bottom-24 -left-36">
+        </div>
+    </div>
+    <!-- Feature #2 -->
+    <!-- 
+    <div class="relative mt-20 lg:mt-52">
+        <div class="container flex flex-col lg:flex-row-reverse items-center justify-center gap-x-24">
+
+            <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+                <img 
+                class="w-3/4 h-3/4 sm:w-3/4 sm:h-3/4 md:w-full md:h-full border-double border-4 border-l-sky-500 rounded-tl-lg"
+                src="{% static 'images/infe.png' %}" 
+                alt="second_landing_image">
+            </div>
+      
+            <div class="flex flex-1 flex-col items-center lg:items-start">
+                <h1 class="text-3xl text-bookmark-blue dark:text-white">Inferencia a la mano</h1>
+                <p class="text-bookmark-grey my-4 text-center lg:text-left sm:w-3/4 lg:w-full dark:text-white">
+                    Adéntrate en el mundo de la Inferencia Estadística a través de distintos autores. El ramo
+                    que te permite abrir nuevos caminos en el aprendizaje automático y la toma de dicisiones.
+                </p>
+                <button type="button" class="btn btn-purple hover:bg-bookmark-white hover:text-black">
+                    Iniciar aventura
+                </button>
+            </div>
+        </div>    
+        
+        <div class="hidden lg:block overflow-hidden
+     bg-bookmark-purple 
+        rounded-l-full
+        absolute
+        h-80 w-2/4 lg: -bottom-24 -right-36">
+        </div>
+    </div>
+    -->    
+    <!-- Feature #3 -->
+    <!-- 
+    <div class="relative mt-20 lg:mt-52">
+        <div class="container flex flex-col lg:flex-row items-center justify-center gap-x-24">
+   
+            <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+                <img 
+                class="w-5/6 h-5/6 sm:w-3/4 sm:h-3/4 md:w-full md:h-full border-double border-4 border-l-sky-500 rounded-tl-lg"
+                src="{% static 'images/vaporwave_animal_reading_deviantart.png' %}" 
+                alt="second_landing_image">
+            </div>
+            
+            <div class="flex flex-1 flex-col items-center lg:items-start">
+                <h1 class="text-3xl text-bookmark-blue dark:text-white">Bookmark in one click</h1>
+                <p class="text-bookmark-grey my-4 text-center lg:text-left sm:w-3/4 lg:w-full dark:text-white">
+                    Organize your bookmarks however you like. Our simple drag-and-drop interface gives you complete 
+                    over how you manage your favorite sites.
+                </p>
+                <button type="button" class="btn btn-purple hover:bg-bookmark-white hover:text-black">
+                    Show me where!
+                </button>
+            </div>
+        </div>    
+        
+        <div class="hidden lg:block overflow-hidden
+     bg-bookmark-purple 
+        rounded-r-full
+        absolute
+        h-80 w-2/4 -bottom-24 -left-36">
+        </div>
+    </div>
+-->    
+</section>
+
+
+ <!---->
+ <section class="py-4 mt-8">
+    <!-- Heading -->
+    <!-- 
+    <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
+        <h1 class="text-3xl text-center text-bookmark-blue dark:text-white">Features</h1>
+        <p class="text-center text-bookmark-grey mt-4 dark:text-white">
+            Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks 
+            syncs on your devices so you can access them on the go.
+        </p>
+    </div>
+    -->
+    <!-- Cards -->
+
+</section> 
+
+{% endblock content %}

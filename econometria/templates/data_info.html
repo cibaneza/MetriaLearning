@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="info">
+        <div class="box__info">
+            <p class="mb-4 text-lg text-gray-900 dark:text-gray-400">Nombre del archivo : {{ name }}</p>
+            <p class="mb-4 text-lg text-gray-900 dark:text-gray-400">Cantidad de variables : {{ attributes }}</p>
+            <p class="mb-4 text-lg text-gray-900 dark:text-gray-400">Muestra : {{ rows }}</p>
+        </div>
+    </div>
+    <div class="attributes">
+        <p class="mb-4 text-lg text-gray-900 dark:text-gray-400">Detalle</p>
+        <div class="box__attributes">
+            <div class="scrollAble">
+            <table class="table table_attr text-gray-500 dark:text-gray-400">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Index</th>
+                        <th>Variable</th>
+                        {% if type != 'object' %}
+                            <th>Minimo</th>
+                            <th>Maximo</th>
+                            <th>Media</th>
+                        {% endif %}
+                        <th>Tipo de variable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if zipped_data %}
+                        {% for head,type,max,min,mean in zipped_data %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ head }}</td>
+                                {% if type != 'object' %}
+                                    <td>{{ min }}</td>
+                                    <td>{{ max }}</td>
+                                    <td>{{ mean }}</td>
+                                {% else %}
+                                    <td> - </td>
+                                    <td> - </td>
+                                    <td> - </td>
+                                {% endif %}
+                                <td>{{ type }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">La calidad de un modelo</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La calidad de un modelo de Regresión Lineal no solo se basa en su precisión, sino que también 
+                    al sesgo. En esta sección, la calidad de un modelo se verá simplemente como la precisión de este. 
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El término R cuadrado
+                    $$R^2$$
+                    Es un tipo de indicador de calidad para el modelo de regresión lineal. Su cálculo tiene que ver con
+                    la covarianza y correlación de estadística.
+                    El R cuadrado también es llamado Coeficiente de determinación y, como se mencionó anteriormente, se utiliza como
+                    un término de la Bondad de ajuste (calidad de Bueno de un modelo). Sin embargo, este último no debe confundirse
+                    con el de la Estadística Inferencial, por tanto se le recomienda utilizar el término de Coeficiente de determinación o R cuadrado.
+                    $$$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Su cálculo es el siguiente: 
+                    $$R^2 = \frac{SSReg}{SSTotal} = 1-\frac{SSRes}{SSTotal}$$
+                    Su interpretación es la siguiente, ya sea SSReg y SSTotal 120 y 170, respectivamente:
+                    $$R^2 = \frac{120}{170} = 0.7058824$$
+                    Es decir, el 70.59% de la variabilidad de x queda explicada por el modelo de regresión, y el resto (1-0.7048824) lo explica el error.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Sin embargo, cabe aclarar que el término de R cuadrado siempre puede ser grande a medida que agreguemos términos suficientes al modelo, por lo tanto
+                    no quiere decir que si creamos un nuevo modelo con nuevas variables ese modelo va a ser mejor que el anterior.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Hahn, en 1973, observó que el valor esperado en una regresión lineal es:
+                    $$E(R^2) = \frac{\widehat{\beta}^2_1(\sum_{i=1}^n x_iy_i-\bar{y}\sum_{i=1}^n x_i)}{\widehat{\beta}^2_1(\sum_{i=1}^n x_iy_i-\bar{y}\sum_{i=1}^n x_i)+\sigma^2}$$
+                    Con frecuencia, R cuadrado es grande. Que R cuadrado sea grande, no implica que la precisión del modelo de regresión sea exacto.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Otro indicador de calidad del modelo involucra a los test de hipótesis, específicamente que los parámetros (Beta cero y Beta uno)
+                    sean significantes, es decir, que aporten al modelo.
+                    
+                $$H_0: \beta_1 = 0$$
+                $$H_1: \beta_1 \neq 0$$
+                $$\text{y,}$$
+                $$H_0: \beta_0 = 0$$
+                $$H_1: \beta_0 \neq 0$$
+                En caso de que los parámetros no sean significantes para el modelo, y, específicamente para Beta uno, se realiza la denominada eliminación hacia atrás. Es decir,
+                crear un nuevo modelo sin la variable no significante para este dado que no involucra efecto en el modelo, a cierto nivel de significancia y con el supuesto 
+                que los residuos del modelo distribuyen de forma normal.
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Por tanto, lo realmente importante cuando hablamos de calidad del modelo no es sobre la precisión de este sino que también el sesgo involucrado en él (el cual buscamos
+                    minimizar).
+                </p>
+
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

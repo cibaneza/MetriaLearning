@@ -1,0 +1,62 @@
+{% load static %}
+<!-- Header -->
+<header
+  class="bg-bookmark-red dark:bg-slate-900 border-b border-gray-200 dark:border-gray-600"
+>
+  <nav class="container flex items-center py-4 mt-4 sm:mt-12">
+    {% comment %}
+    <a href="{% url 'home' %}" class="cursor-pointer">
+      <div class="py-1">
+        <img
+          src="{% static 'images/origami.svg' %}"
+          alt="logo"
+          class="object-cover h-20 w-50"
+        />
+      </div>
+    </a>
+    {% endcomment %}
+    <a
+      class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+      href="{% url 'home' %}"
+      ><span class="text-gray-800 antialiased">MetriaLearning Website</span></a
+    >
+    <ul
+      class="hidden sm:flex flex-1 justify-end items-center gap-10 uppercase text-sm text-white dark:text-white"
+    >
+      <li class="cursor-pointer">
+        <a href="{% url 'nosotros' %}">Nosotros</a>
+      </li>
+      <img
+        src="{% static 'images/moon-and-stars-svgrepo-com.svg' %}"
+        alt="moon-dark"
+        class="moon cursor-pointer"
+      />
+      <img
+        src="{% static 'images/sun-svgrepo-com.svg' %}"
+        alt="sun-light"
+        class="sun cursor-pointer object-contain h-12 w-12"
+      />
+
+      {% comment %} {% if request.user.is_authenticated %}
+      <li>{{request.user|title}}</li>
+      <a
+        type="button"
+        class="bg-bookmark-red text-white rounded-md px-7 py-3 uppercase dark:bg-white dark:text-slate-900"
+        href="{% url 'logout' %}"
+        >Logout</a
+      >
+
+      {% else %}
+      <a
+        type="button"
+        class="bg-bookmark-red text-white rounded-md px-7 py-3 uppercase dark:bg-white dark:text-slate-900"
+        href="{% url 'login' %}"
+        >Login</a
+      >
+      {% endif %} {% endcomment %}
+    </ul>
+    <div class="flex sm:hidden flex-1 justify-end">
+      <i class="text-2xl fas fa-bars"></i>
+    </div>
+  </nav>
+</header>

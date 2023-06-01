@@ -1,0 +1,32 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">¿Qué tipo de variables se ingresan a una regresión lineal?</h1>
+                <p class="mb-2 text-lg text-gray-500 dark:text-gray-400">
+                La importancia de conocer la naturaleza de las variables de un Dataset con el que tengamos que trabajar radica en esta sección, dado que
+                no podemos utilizar cualquier tipo de variable en un modelo de regresión lineal.
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Para la variable dependiente o a explicar o predicha (y), se es fundamental que sea una variable numérica no categórica ni binaria.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Para las variables independientes (x), se necesita que sean variables numéricas o categóricas convertidas a numéricas.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La explicación rápida de porqué esto debe ser así es simplemente porque el algoritmo de una regresión lineal está construida de esa forma.
+                    Si utilizaramos una variable binaria como dependiente, estaríamos hablando de un modelo Logit que es algo totalmente distinto de una regresión lineal.
+                    Aunque esto no quiere decir que el modelo de Regresión Lineal no te otorgue salidas si ignoramos lo anterior, sino que va a otorgar salidas pero será un modelo
+                    mal planteado.  
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

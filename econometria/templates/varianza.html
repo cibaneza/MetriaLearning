@@ -1,0 +1,36 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Estimación de la varianza</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La estimación de la varianza se necesita para probar hipótesis y formar intervalos de confianza dado el modelo de regresión. 
+                    Para esta sección deberas tener en cuenta los valores obtenidos en ANOVA MRLS.
+                </p>    
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Se encuentra demostrado que, el valor esperado de SSRes es
+                    $$E(SSRes) = (n-2)\sigma^2$$
+                    Por lo que un estimador insesgado de la varianza es
+                    $$\widehat{\sigma}^2 = \frac{SSRes}{n-2} = MSRes$$
+                    MSRes se llama cuadrado medio residual. La raíz cuadrada del estimador de la varianza se llama
+                    el error estándar de la regresión.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Se debe tener en cuenta que, SSRes no es más que
+                    $$SSRes = \sum_{i=1}^n e^2_i = \sum_{i=1}^n (y_i-\widehat{y}_i)^2$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El estimador de la varianza depende netamente del modelo, dado que cualquier especificación equivocada o violación
+                    sobre los errores del modelo, puede ejercer en sesgo para el estimador.
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

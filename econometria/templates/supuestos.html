@@ -1,0 +1,146 @@
+{% extends 'econometria_home.html' %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Supuestos - De una regresión lineal</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">Use the sidebar component to show a
+                    list of menu items and multi-level dropdown items on either side of the page to navigate
+                    on your website</p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Con el teorema de Gauss-Markov, respecto al método MCO, tenemos que los Beta estimados son:
+                </p>
+                <ul class="ml-4 pb-2 list-disc text-lg text-gray-600 dark:text-gray-400">
+                    <li>Mejor estimador</li>
+                    <li>Linealmente</li>
+                    <li>Insesgados</li>
+                    <li>Y a la vez eficientes</li>
+                </ul>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Al violar uno de los siguientes supuestos, usualmente suceden dos cosas. Una es que los coeficientes
+                    se vuelven "defectuosos", sesgados. Y, dos, que la inferencia a aplicar sobre el modelo también pudieran
+                    sortear valores defectuosos y por tanto conclusiones erróneas. 
+                    Al nosotros trabajar con Regresiones Lineales, se asume que se cumple lo siguiente: 
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">1. Linealidad</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    No importa lo que sucede o como sean los comportamientos de X, los betas deben ser lineales o 
+                    los parámetros deben ser lineales.
+                    $$Y = \beta_0+\beta_1X+\epsilon \quad \text{está bien}$$
+                    $$Y = \beta_0+\beta_1X^2+\epsilon \quad \text{está bien}$$
+                    $$Y = \beta_0+ln\beta_1X^2+\epsilon \quad \text{está mal}$$
+
+                    Una solución a este problema, es especificar bien el modelo.
+                </p>  
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">2. Varianza del error constante</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Para denotar que la Varianza del error sea constante, se utiliza la palabra "Homocedasticidad", contraria a la palabra
+                    "Heteroscedasticidad" que indica que la varianza de los errores no son constantes.
+                   
+                </p>  
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Si es que hay Heteroscedasticidad, los errores estándar de los estimadores están sesgados. Vuelve a la pestaña 
+                    "Test de Hipótesis e Intervalos de confianza" y fijate en donde se encuentra la varianza en las fórmulas y porqué los estimadores
+                    se vuelven sesgados.
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Este problema usualmente ocurre cuando tenemos variables como Ingreso dentro del modelo, porque el ingreso puede variar
+                    desde un número muy pequeño hasta un número muy grande, haciéndose parecido al problema de cuando nos encontramos con 
+                    datos atípicos. Una solución simple al problema de la Heteroscedasticidad es utilizar el Método MCO pero acompañado de 
+                    los Errores Estándar de Eicker-White, dado que en este cálculo de los errores estándar no se necesita la varianza.
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">3. Independencia del término de los errores</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    "No autocorrelación" se refiere a que los residuos son independientes, o Independencia del término de los errores. En otras palabras, 
+                    los residuos no siguen cierto patrón o tendencia.     
+                    $$cov(x, \varepsilon)=0$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El problema, a que no se cumpla este supuesto, es que al igual que la Heteroscedasticidad, afecta a los Errores Estándar y por tanto
+                    a los Test de Hipótesis. Los estimadores (por MCO) continúan siendo lineales e insesgados, pero ineficientes. 
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Para solucionar este problema, se sugiere en primera instancia investigar variables omitidas en el modelo. 
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">4. Distribución normal de los residuos</h1>
+                    <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                        Este apartado es igual de importante que los anteriores, dado que es el supuesto principal al realizar inferencias. 
+                        El porqué nos interesa que los Residuos sean específicamente los que distribuyan normal es porque, recuerda que al utilizar
+                        el método MCO hacemos lo siguiente: 
+
+                        $$y = \beta_0+\beta_1x+\varepsilon$$
+                        $$\varepsilon = y-\beta_0-\beta_1x$$
+                        $$\sum_{i=1}^n \varepsilon_i^2 =\sum_{i=1}^n (y_i-\beta_0-\beta_1x_i)^2$$
+
+                        Los términos Beta cero y Beta uno están en función de los residuos del modelo.
+
+                        Por tanto, los residuos deben cumplir con: 
+
+                        $$\varepsilon \sim N(\mu, \sigma)$$
+                        $$\varepsilon \sim N(0, 1)$$
+
+                        Mientras que, los Betas distribuyen: 
+
+                        $$\widehat{\beta}_1 \sim N(\beta_1, \sigma)$$
+                        $$\widehat{\beta}_0 \sim N(\beta_0, \sigma)$$
+                    </p>
+
+                    <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                       Y, una vez más, si no se cumple este supuesto, las conclusiones de los Test de Hipótesis podrían ser erróneas. Una solución simple a la violación
+                       de este supuesto, es aumentar el tamaño de muestra.
+                    </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">5. Error esperado</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$\varepsilon_i = \sum_{i=1}^n y_i-\widehat{y_i} = 0$$
+                    Entonces, decimos que el valor esperado de los errores es igual a 0.
+                    $$E(\mu_i/x_i) = 0$$
+                    El valor esperado del error teóricamente es cero. Matemáticamente es aproximadamente cero. Además, 
+                    se dice que el valor esperado es insesgado y el supuesto de insesgadez es verdadero.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Esto se cumple cuando utilizamos el método MCO.
+                </p>
+
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">¿Cómo se verifican los supuestos para un modelo de Regresión Lineal?</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Tenemos dos opciones eficientes, que son utilizar 1) gráficos y 2) test de hipótesis. 
+                    Generalmente utilizaremos gráficos para los residuos y los test de hipótesis varían según el problema a testear.
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    ¿Cómo detectar la Heteroscedasticidad? - Podemos utilizar el Test de Breusch-Pagan y el de Goldfeldt-Quant.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    ¿Cómo detectar la Autocorrelación? - Podemos utilizar el Test de Durbin-Watson y el de Breusch-Godfrey. 
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Podemos utilizar gráfico de los Residuos para visualizar el problema de la Heteroscedasticidad y de la Autocorrelación,
+                    aunque siempre es recomendable utilizar los Test de Hipótesis correspondientes.
+                </p>
+
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    ¿Cómo detectar la violación de la normalidad? - Podemos utilizar el Test de Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling
+                    y un Histograma Q-Q Plot.
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

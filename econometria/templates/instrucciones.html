@@ -1,0 +1,22 @@
+{% extends 'econometria_home.html' %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Instrucciones para una correcta salida del modelo</h1>
+            </div>
+            <div id="mainContent">
+                    <ul class="mb-2 list-disc text-lg text-gray-500 dark:text-gray-400">
+                        <li>Las columnas de las bases de datos deben estar correctamente específicados y no deben contar con carácteres como comillas o comillas dobles.</li>
+                        <li>La aplicación solo acepta archivos con extensiones .csv, .xls, .xlsx y .txt.</li>
+                        <li>Los archivos no deben superar los 3Mb.</li>
+                        <li>Las variables deben ser numéricas. (Tanto para las variables dependientes como independientes)</li>
+                        <li>La aplicación limpia de manera automática los valores NA.</li>
+                    </ul>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Análisis de la varianza</h1>
+                <p class="mb-2 text-lg text-gray-500 dark:text-gray-400">
+                Análisis de la varianza, o Analysis of Variance (ANOVA) para un MRLS (Modelo de Regresión Lineal Simple), se podría señalar como un tipo de análisis global dentro de la Estadística Inferencial y 
+                Pruebas de Hipótesis.
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    ANOVA responde a aquella necesidad de, deseando realizar test de diferencia de medias para distintas variables, no realizar 
+                    los test individuales sino que de manera global. Es una manera más eficiente que trata de disminuir el tiempo para el investigador.
+                    Un requisito clave, para el caso de una regresión lineal simple o múltiple, es que los residuos del modelo distribuyen de manera normal, por lo que de aquí 
+                    en adelante se asume que este supuesto se cumple.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Dado que estamos hablando de Regresiones Lineales, utilizamos ANOVA en las variables explicativas de nuestro modelo.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Cabe mencionar que, un Test ANOVA es equivalente a un Test T en una Regresión Lineal Simple, dado que estamos utilizando una 
+                    sola variable explicativa. En cambio, para una Regresión Lineal Múltiple, no es igual. 
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    A través del Test ANOVA se extrae el Test F de Fisher. Por tanto, cuando nos referimos a un Test ANOVA en realidad
+                    y generalmente estamos buscando realizar el Test F, que es aquel Test que nos permite realizar una perspectiva global del modelo.
+                    $$H_0 : \mu_0=\mu_1=\mu_2=\dots\mu_k \quad\text{ {"k" población}} $$
+                    $$H_1 : \text{Al menos una media difiere de las otras.} $$
+
+                    Para una regresión lineal simple, podemos replantear la test de hipótesis anterior de manera de buscar la significancia global:
+                    $$H_0 : \beta_0=\beta_1=0 $$
+                    $$H_1 : \text{Al menos un coeficiente de las betas es diferente de cero.} $$
+
+                    El test F de Fisher es equivalente al test T (sobre beta uno) en una regresión lineal simple. Es decir, si en el Test F rechazamos H0, 
+                    el test T también lo rechaza y por tanto basta con que Beta uno sea significativo en el test F o Fisher para serlo en ambos tests.
+                    Esta regla, sin embargo, no se cumple para un modelo de Regresión Lineal Múltiple.
+
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                En la regresión lineal utilizamos la Tabla ANOVA, que nos permite obtener el valor F de fisher. 
+                $$\begin{array} {|r|r|}\hline \text{Fuente de variación} & \text{Suma de cuadrados SS} & \text{Grados de libertad df} & \text{Cuadrado medio MS} & F_c \\ \hline \text{Regresión SSReg} & \sum_{i=1}^n (\widehat{y_i}-\bar{y_i})^2 & 1 & \text{MSReg =}\frac{SSreg}{1} & \frac{MSReg}{MSRes} \\ \hline \text{Residual SSRes} & \sum_{i=1}^n (y_i-\widehat{y_i})^2 & n-2 & \text{MSRes =}\frac{SSRes}{n-2} \\ \hline \text{Total SSTotal} & \sum_{i=1}^n (y_i-\bar{y_i})^2 & n-1 \end{array}$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    A partir de la suma de cuadrados de la Regresión, podemos escribir la fórmula en términos de los Betas, recordando que:
+                    $$\widehat{\beta}_0 = \bar{y_i} - \widehat{\beta}_1 \bar{x_i} \quad\text{entonces,}\quad \bar{y_i} = \widehat{\beta}_0+\widehat{\beta}_1$$
+                    $$\widehat{y_i} = \widehat{\beta}_0+\widehat{\beta}_1 \bar{x_i}$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Y, que:
+                    $$\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i \quad\text{entonces,}\quad \bar{y}n = \sum_{i=1}^n y_i$$
+                    $$\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \quad\text{entonces,}\quad \bar{x}n = \sum_{i=1}^n x_i$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    SSReg podría también verse de esta otra forma
+                    $$\text{SSReg = } \widehat{\beta}_1^2\sum_{i=1}^n (x_i-\bar{x})^2 \quad\text{o,}\quad \widehat{\beta}_1^2\sum_{i=1}^n (x_i^2-n\bar{x}^2)$$
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La Tabla ANOVA nos entrega un análisis muy nutritivo en términos de análisis del modelo de Regresión Lineal. Una de ellas, es el componente del 
+                    F calculado (Fc) que nos permite realizar el test de hipótesis visto en esta sección y que corresponde a un test global con F de Fisher.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    F calculado distribuye Fisher
+                    $$F_c \sim F_{(p-1, n-p, 1-\alpha)}$$
+                    Con p como el número de parámetros del modelo (Beta cero+Beta uno+...+Beta_k). Y, alpha como el nivel de significancia para el Test.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Dado que comenzamos analizando un Modelo de Regresión Lineal Simple, consideramos:
+                    $$F_c \sim F_{(1, n-2, 1-\alpha)}$$
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

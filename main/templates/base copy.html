@@ -1,0 +1,55 @@
+{% load tailwind_tags %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- tailwind -->
+    {% tailwind_css %}
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <title>MetriaLearning -- Create, learn and have fun -- Copyright2022</title>
+    <!-- jquery -->
+    <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+    <!-- prism (highligt code) -->
+    <link rel="stylesheet" href="{% static 'css/prism.css' %}" />
+    <script src="{% static 'js/prism.js' %}"></script>
+    <!-- latex -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <!-- highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <!-- app -->
+    {% block scripts %}{% endblock %}
+  </head>
+  <body
+    class="font-Poppins overflow-x-hidden bg-slate-100 dark:bg-slate-900 leading-normal tracking-normal gradient"
+  >
+    {% include 'navbar.html' %} {% block content %}
+    <!-- -->
+    {% block topic %}
+    <!-- -->
+    {%endblock %}
+    <!-- -->
+    {% endblock %}
+    <!-- -->
+    {% include 'footer.html' %}
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

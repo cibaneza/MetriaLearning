@@ -1,0 +1,25 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Análisis de la varianza</h1>
+                <p class="mb-2 text-lg text-gray-500 dark:text-gray-400">
+                Análisis de la varianza, o Analysis of Variance (ANOVA) para un MRLM (Modelo de Regresión Lineal Múltiple).
+                </p>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    $$
+                    \begin{array} {|r|r|}\hline \text{Fuente de variación} & \text{Suma de cuadrados SS} & \text{Grados de libertad df} & \text{Cuadrado medio MS} & F_c \\ \hline \text{Regresión SSReg} & \widehat{\beta}^tX^ty-n\bar{y}^2 & p-1 & \text{MSReg =}\frac{SSreg}{p-1} & \frac{MSReg}{MSRes} \\ \hline \text{Residual SSRes} & y^ty-\widehat{\beta}^tX^ty & n-p & \text{MSRes =}\frac{SSRes}{n-p} \\ \hline \text{Total SSTotal} & y^ty-n\bar{y}^2 & n-1 \end{array}
+                    $$
+                    Con n el total de muestra y, p el total de parámetros.
+                </p>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

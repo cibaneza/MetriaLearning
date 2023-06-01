@@ -1,0 +1,32 @@
+{% extends 'econometria_home.html' %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Libros y Recursos</h1>
+            </div>
+            <div id="mainContent">
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    A lo largo de las secciones, se utilizaron distintos recursos para la elaboración de los contenidos. Principalmente, se encuentra
+                    el libro "Introducción al Análisis de Regresión Lineal" de Montgomery, Peck y Vining. A continuación se esboza una lista de los distintos recursos utilizados 
+                    (y que te aconsejo revisar más de una vez).
+                </p>
+                <ul class="mb-2 list-disc text-lg text-gray-500 dark:text-gray-400">
+                    <li><q>Introducción al Análisis de Regresión Lineal de Montgomery, Peck y Vining 3a. Edición</q></li>
+                    <li><q>Understanding Basic Statistics de Brase y Brase 8va. Edición</q></li>
+                    <li><q cite="https://mathinsight.org/vector_introduction">
+                        <a href="https://mathinsight.org/vector_introduction">vector introduction</a>
+                        </q>
+                    </li>
+                    <li><q cite="https://www.ibm.com/docs/fi/cognos-analytics/11.1.0?topic=terms-adjusted-r-squared">
+                        <a href="https://www.ibm.com/docs/fi/cognos-analytics/11.1.0?topic=terms-adjusted-r-squared">Adjusted r squared</a>
+                        </q>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}

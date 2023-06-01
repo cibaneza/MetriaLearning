@@ -1,0 +1,112 @@
+{% extends 'econometria_home.html' %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Regresión Lineal - Simple</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    La regresión es una herramienta muy útil para tratar predicciones, teniendo
+                    en consideración tanto variables explicativas como una variable explicada. Es un algoritmo
+                    pertenenciente al área del Machine Learning o Aprendizaje Automático. De ella se utilizan comúnmente
+                    las regresiones lineales simples, múltiples y logit. </p>
+            </div>
+            <div id="mainContent">
+                <p class="dark:text-gray-400">
+                    $$y = \beta_0+\beta_1x$$
+                    $$\text{Es una ecuación de función cualquiera}$$
+                    $$y = \beta_0+\beta_1x+\varepsilon$$
+                    $$\text{Es una ecuación de regresión simple, porque solo tiene una variable explicativa que explica al modelo}$$
+                    $$\text{La idea es minimizar el error, que es el término epsilon }\varepsilon$$
+                </p>
+                <!-- Plot -->
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="dark:text-gray-400">
+                        Relación entre valores de x e y, dados.  
+                    </p>
+                </figure>
+                <script type="application/javascript">
+                    Highcharts.chart('container', {
+                        title: {
+                            text: 'Diagrama de dispersión con una línea de regresión'
+                        },
+                        xAxis: {
+                            min: -0.5,
+                            max: 5.5
+                        },
+                        yAxis: {
+                            min: 0
+                        },
+                        series: [{
+                            type: 'line',
+                            name: 'Regression Line',
+                            data: [[0, 1.11], [5, 4.51]],
+                            marker: {
+                                enabled: false
+                            },
+                            states: {
+                                hover: {
+                                    lineWidth: 0
+                                }
+                            },
+                            enableMouseTracking: false
+                        }, {
+                            type: 'scatter',
+                            name: 'Observations',
+                            data: [1, 1.5, 2.8, 3.5, 3.9, 4.2],
+                            marker: {
+                                radius: 4
+                            }
+                        }]
+                    });
+                </script>
+
+                <!--  -->
+                <p class="pt-4 mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El gráfico de dispersión es el inicio del estudio de una regresión lineal y de la idea de esta. Dado que 
+                    es posible visualizar la relación entre dos variables, en este caso x e y.
+                    La línea de regresión es el resultado al minimizar el error de la ecuación de regresión, y este método 
+                    es conocido como mínimos cuadrados ordinarios o OLS de ordinary least squares. También es posible
+                    de encontrar como una loss function.
+                </p>
+                <p class="pt-4 mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El error se entiende como: 
+                    $$y_i-\widehat{y_i}$$
+                    Y se lee, el valor real menos el valor estimado. El error total es: 
+                    $$\sum_{i=1}^n y_i-\widehat{y_i}$$
+                    Sin embargo, nos interesa saber el error total de una forma que lo podamos utilizar (sin negativos).
+                    $$\sum_{i=1}^n (y_i-\widehat{y_i})^2$$
+                    Y, esta ecuación, se conoce como la suma de los residuales al cuadrado la cual se almacena en una variable:
+                    $$\sum_{i=1}^n (y_i-\widehat{y_i})^2 = \varepsilon_i^2$$
+                </p>
+                <p class="pt-4 mb-4 text-lg text-gray-500 dark:text-gray-400">
+                Con fines de establecer el mejor estimador linealmente insesgado y eficiente (MELI), se realiza el método MCO: 
+                $$\text{Método de mínimos cuadrados (OLS)}$$
+                $$y = \beta_0+\beta_1x+\varepsilon$$
+                $$\text{minimizar }\sum_{i=1}^n \varepsilon_i = y_i-\beta_0-\beta_1x_i$$
+                Recordando que lo que buscamos minimizar es la suma de los residuales al cuadrado
+                $$\text{minimizar }\sum_{i=1}^n \varepsilon_i^2 = (y_i-\beta_0-\beta_1x_i)^2$$
+                Con fin de buscar la mejor recta lineal que minimice los errores, se utiliza una función cuadrática denotada por 
+                $$(y-\beta_0-\beta_1x)^2$$
+                Interpretándose finalmente que la función de error al cuadrado alcanza un mínimo en los betas.
+                Y, dado que los parámetros $$\beta_0$$ y $$\beta_1$$ son constantes desconocidas, deben de estimarse. Podemos utilizar
+                las derivadas parciales.
+                </p>
+                <p class="pt-4 mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Si 
+                    $$\vartheta \text{ es la función de error al cuadrado, y entonces } \vartheta(\beta_0, \beta_1):$$
+                    $$\text{minimizar }\sum_{i=1}^n \varepsilon_i^2 = (y_i-\beta_0-\beta_1x_i)^2$$
+                    $$\Rightarrow \frac{\partial\vartheta}{\partial\beta_0} = \sum_{i=1}^n \varepsilon_i^2 = (y_i-\beta_0-\beta_1x_i)^2$$
+                    $$\Rightarrow \frac{\partial\vartheta}{\partial\beta_1} = \sum_{i=1}^n \varepsilon_i^2 = (y_i-\beta_0-\beta_1x_i)^2$$
+                    Desarrollando las respectivas derivadas, obtenemos que: 
+                    $$\star \widehat{\beta}_1 = \frac{\sum_{i=1}^n x_iy_i - \bar{y}\sum_{i=1}^n x_i}{(\sum_{i=1}^n x_i^2 - \bar{x}\sum_{i=1}^n x_i)}$$
+                    $$\star \widehat{\beta}_0 = \bar{y_i} - \widehat{\beta}_1 \bar{x_i} $$
+                </p>
+
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

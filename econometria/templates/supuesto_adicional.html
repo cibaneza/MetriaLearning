@@ -1,0 +1,35 @@
+{% extends 'econometria_home.html' %}
+{% load static %}
+{% block topic %}
+<main id="content-wrapper" class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+    <div class="flex w-full">
+        <div class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
+            <div class="pb-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">Supuesto adicional MRLM</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    Además de los supuestos ya vistos en la Regresión Lineal Simple, se añade uno adicional de igual valor o importancia.
+                </p>
+            </div>
+            <div id="mainContent">
+                <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+                    id="content">No Multicolinealidad</h1>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El problema de la multicolinealidad ocurre cuando las variables regresoras o explicativas X están relacionadas.  
+                    Por ejemplo, en el siguiente modelo:
+                    $$
+                    Salary y_i = \beta_0+\beta_1(YearsExperience_i)+\beta_2(Age_i)+\varepsilon_i
+                    $$
+                    Ocurre que, a medida que aumentan los años de experiencia, también aumenta la edad del trabajador.
+                </p>
+                <p class="mb-4 text-lg text-gray-500 dark:text-gray-400">
+                    El problema de la multicolinealidad, es que aumenta el valor del error estándar en las variables afectadas. Entonces, básicamente,
+                    el problema de la multicolinealidad afecta al momento de concluir el test de hipótesis de significancia en las variables afectadas más no en la predicción o en el r 
+                    cuadrado ajustado, al igual que no afecta en el test F o test global. Es decir, la multicolinealidad indetermina la significancia estadística de las variables independientes afectadas.
+                </p>
+                
+            </div>
+        </div>
+    </div>        
+</main>
+{% endblock %}
